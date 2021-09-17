@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            background: #777;
+        }
+
+        .elements {
+            margin: auto;
+            display: flex;
+            width: 600px;
+        }
+
+        .item {
+            transition: 0.4s all;
+            z-index: 100;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #fff;
+            box-sizing: border-box;
+            background: chocolate;
+        }
+        .test{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<button class="test">test</button>
+<div class="elements">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+</div>
+
+<script>
+    window.onload = function () {
+        let items = document.querySelectorAll('.item'),
+            elements = document.querySelector('.elements'),
+            btn = document.querySelector('button')
+
+        btn.onmouseover = function (e){
+            console.log(e)
+        }
+        elements.onmouseover = function (e) {
+           console.log(e.target)
+        }
+        items.forEach(function (item) {
+          item.onmouseover = function (e) {
+              console.log(e.target)
+          }
+        })
+    }
+</script>
+</body>
+</html>

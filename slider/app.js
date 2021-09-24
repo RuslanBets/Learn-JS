@@ -1,48 +1,49 @@
 window.onload = function () {
-  let pictures = document.querySelectorAll('.slider .item'),
-    next = document.querySelector('.slider .next'),
-    prev = document.querySelector('.slider .prev'),
-    total = pictures.length - 1
-  pictures[0].classList += ' active'
+    let prev = document.querySelector('.prev'),
+        next = document.querySelector('.next'),
+        slider = document.querySelector('.slider'),
+        items = slider.querySelectorAll('.item img')
 
-  next.onclick = function () {
-    console.log('Next btn was clicked ...')
+    next.addEventListener('click', function (){
+        showNext(items)
+    })
+    prev.addEventListener('click', function (){
+        showPrev(items)
+    })
 
-    let target_picture = findActiveFromAllPictures(pictures)
+    showDefaultFirst()
 
-    showNext(target_picture.current, target_picture.next)
-
-  }
-
-  prev.onclick = function () {
-    console.log('Prev btn was clicked ...')
-
-    let target_picture = findActiveFromAllPictures(pictures)
-
-    showNext(target_picture.current, target_picture.next)
-
-  }
-
-  function showNext (current, next) {
-    console.log('The previous one was hidden and shown next ...')
-    current.classList.remove('active')
-    next.classList += ' active'
-  }
-
-  function findActiveFromAllPictures (elements) {
-    console.log('Was fined and returned current and next elements in object ...')
-    let result = {
-      current: null,
-      next: null
+    function showNext(slides) {
+        for (let i = 0; i < slides.length; i++) {
+            if (slides[i].className === 'active') {
+                slides[i].classList.remove('active')
+                if (i === slides.length - 1){
+                    i = 0
+                    slides[i].classList += 'active'
+                }else{
+                    slides[i + 1].classList += 'active'
+                }
+                break
+            }
+        }
     }
 
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].classList.contains('active')) {
-        result.current = elements[i]
-        result.next = (i < total) ? elements[i + 1] : elements[0]
-      }
+    function showPrev(slides) {
+        for (let i = 0; i < slides.length; i++) {
+            if (slides[i].className === 'active') {
+                slides[i].classList.remove('active')
+                if (i === 0){
+                    i = slides.length - 1
+                    slides[i].classList += 'active'
+                }else{
+                    slides[i - 1].classList += 'active'
+                }
+                break
+            }
+        }
     }
 
-    return result
-  }
+    function showDefaultFirst() {
+        slider.querySelector('div > img').classList += 'active'
+    }
 }

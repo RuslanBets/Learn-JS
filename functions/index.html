@@ -22,7 +22,22 @@
 <ul class="products">
 
 </ul>
-<script src="app.js"></script>
-<script src="string.js"></script>
+<script>
+
+   function test() {
+        let num = Math.floor(Math.random() * 10) + 1
+       if (num < 5) {
+           console.log(num)
+           test()
+       }else {
+           console.log(num, 'finish')
+       }
+
+   }
+
+   test()
+</script>
+<!--<script src="app.js"></script>-->
+<!--<script src="string.js"></script>-->
 </body>
 </html>

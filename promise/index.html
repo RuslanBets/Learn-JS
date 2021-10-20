@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+
+<body>
+
+        <script>
+                const users = [
+                        {
+                         id: 1,
+                         name:'Vitalii'
+                        },
+                        {
+                         id: 2,
+                         name:'Ruslan'
+                        },
+                        {
+                         id: 3,
+                         name:'Danil'
+                        },
+                        {
+                         id: 4,
+                         name:'Roman'
+                        },
+                ]
+        
+                 new Promise(function(resolve, reject) {
+                        let ul = document.createElement('ul')
+                       resolve(ul)
+                 }).then((tag) => {
+                         let li_list = []
+                         for (let index = 0; index < users.length; index++) {
+                                let li = document.createElement('li')
+                                 li.innerText = users[index].name
+                                 li_list.push(li)
+                         }
+
+                         return {
+                                parent: tag,
+                                lis: li_list
+                         }
+                 }).then((data)=> {
+                         for (let index = 0; index < data.lis.length; index++) {
+                                data.parent.append(data.lis[index])
+                         }
+                         
+                         document.body.append(data.parent)
+                 })
+                
+        </script>
+</body>
+
+</html>
